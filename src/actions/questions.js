@@ -1,5 +1,5 @@
 import { _getQuestions, _saveQuestion, _saveQuestionAnswer
-} from '../util/_DATA'
+} from '../utils/_DATA'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'

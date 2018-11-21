@@ -4,10 +4,16 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.5.1",
+    "avataaars": "^1.2.1",
+    "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-redux": "^5.1.1",
     "react-redux-loading": "^1.0.1",
-    "react-scripts": "2.1.1"
+    "react-scripts": "2.1.1",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^4.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
