@@ -1,25 +1,54 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleInitialData } from '../actions/shared'
-import './App.css'
-import LoadingBar from 'react-redux-loading'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Nav from './Nav'
+import Question from './Question'
+import styled from 'styled-components'
 
-class App extends Component {
+const AllQuestionsContainer = styled.div`
+width: 80%;
+margin: 0 auto;
+margin-top: 3rem;
+border: 2px solid darkblue;
+padding: 3rem;
+display: flex;
+flex-wrap: no-wrap;
+justify-content: space-around;
+`
 
+class AllQuestions extends Component {
   render () {
+    console.log(this.props)
     return (
-      <div className='App'>
-      x
-      </div>
+      <AllQuestionsContainer>
+        <div className='unanswered-questions'>
+          <h3 className='center'>Unanswered questions</h3>
+          <ul className='unanswered-questions-list'>          {this.props.questionIds.map((id) => (
+            <li key={id}>
+              <Question id={id} />
+
+            </li>
+          ))}
+          </ul>
+        </div>
+
+        <div className='answered-questions'>
+          <h3 className='center'>Answered questions</h3>
+          <ul className='answered-questions-list'>          {this.props.questionIds.map((id) => (
+            <li key={id}>
+              <Question id={id} />
+
+            </li>
+          ))}
+          </ul>
+        </div>
+      </AllQuestionsContainer>
     )
   }
 }
 
-function mapsStateToProps ({ authedUser }) {
+function mapStateToProps ({ questions }) {
   return {
-    loading: authedUser === null
+    questionIds: Object.keys(questions)
   }
 }
-export default connect(mapsStateToProps)(App)
+
+export default connect(mapStateToProps)(AllQuestions)

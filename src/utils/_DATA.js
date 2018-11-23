@@ -200,3 +200,14 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
     }, 500)
   })
 }
+
+export function getInitialData () {
+  return Promise.all([
+    _getUsers(),
+    _getQuestions()
+  ]).then(([users, questions, authedId = null]) => ({
+    users,
+    questions,
+    authedId
+  }))
+}

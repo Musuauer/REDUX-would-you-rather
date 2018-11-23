@@ -1,10 +1,10 @@
-import { getInitialData } from '../utils/api'
+import { getInitialData } from '../utils/_DATA'
 import { receiveUsers } from '../actions/users'
 import { receiveQuestions } from '../actions/questions'
 import { setAuthedUser } from './authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-export const handleInitialData = dispatch => {
+export const handleInitialData = () => dispatch => {
   dispatch(showLoading())
   return getInitialData()
     .then(({ users, questions, authedId }) => {
