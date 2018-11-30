@@ -8,24 +8,24 @@ export const questions = (state = {}, action) => {
         ...action.questions
       }
     case ADD_QUESTION :
-      const { formattedQuestion } = action
-
+      const { question } = action
       // adapted from the saveQuestion function in _DATA.js
       return {
         ...state,
-        [formattedQuestion.id]: formattedQuestion
+        [question.id]: question
       }
     case SAVE_QUESTION_ANSWER :
-      const { authedUser, qid, answer } = action.answerInfo
+      console.log(action)
 
+      const { authedUser, id, answer } = action.answerInfo
       // adapted from the _saveQuestionAnswer function in _DATA.js
       return {
         ...state,
-        [qid]: {
-          ...state[qid],
+        [id]: {
+          ...state[id],
           [answer]: {
-            ...state[qid][answer],
-            votes: state[qid][answer].votes.concat([authedUser])
+            ...state[id][answer],
+            votes: state[id][answer].votes.concat([authedUser])
           }
         }
       }

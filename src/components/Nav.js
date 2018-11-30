@@ -51,11 +51,10 @@ class Nav extends Component {
   render () {
     return (
       <Navi className='nav'>
-        {console.log('NAV PROPS:', this.props.user, users)}
         <ul>
           <li>
             <NavLink to='/all' exact activeClassName='active'>
-            Home
+            All Questions
             </NavLink>
           </li>
           <li>

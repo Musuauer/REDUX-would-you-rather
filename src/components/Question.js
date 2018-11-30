@@ -1,39 +1,39 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import Radio from '@material-ui/core/Radio'
 import FormControl from '@material-ui/core/FormControl'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import RadioGroup from '@material-ui/core/RadioGroup'
+import { handleSaveQuestionAnswer } from '../actions/questions'
 
 class Question extends Component {
   state = {
-    value: ''
-  }
-
-  toParent = (e, id) => {
-    e.preventDefault()
-    // this.props.history.push(`/tweet/${id}`)
+    answer: ''
   }
 
   handleChange = event => {
-    this.setState({ value: event.target.value })
+    this.setState({ answer: event.target.value })
+
+    const answer = event.target.value
+    const { id, authedUser } = this.props
+
+    const answerInfo = {authedUser, id, answer}
+    this.props.dispatch(handleSaveQuestionAnswer(answerInfo))
+    this.props.history.push('/all')
   }
 
   render () {
-    console.log('question props:', this.props)
     const { question, users } = this.props
 
     if (question === null) {
       return <p>This question doesn't exist</p>
     }
-    const {
-      id, author, optionOne, optionTwo
-    } = question
+    const { author, optionOne, optionTwo } = question
     const { avatarURL, name } = users[author]
 
     return (
-      <Link to={`/question/${id}`} className='question'>
+      <div className='question'>
         <img
           src={avatarURL}
           alt={`Avatar of ${name}`}
@@ -41,34 +41,34 @@ class Question extends Component {
         />
         <div className='question-info'>
           <span>{name} asks</span>
-          <h3>
+          <h4>
               Would you rather...
-          </h3>
+          </h4>
           <FormControl
             component='fieldset'
           >
             <RadioGroup
               aria-label='gender'
               name='gender2'
-              value={this.state.value}
+              value={this.state.answer}
               onChange={this.handleChange}
             >
               <FormControlLabel
                 value='optionOne'
                 control={<Radio color='primary' />}
                 label={optionOne.text}
-                labelPlacement='start'
+                labelPlacement='end'
               />
               <FormControlLabel
                 value='optionTwo'
                 control={<Radio color='primary' />}
                 label={optionTwo.text}
-                labelPlacement='start'
+                labelPlacement='end'
               />
             </RadioGroup>
           </FormControl>
         </div>
-      </Link>
+      </div>
     )
   }
 }

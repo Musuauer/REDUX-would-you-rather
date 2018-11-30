@@ -58,7 +58,7 @@ let questions = {
     },
     optionTwo: {
       votes: ['vladimirputin', 'angelamerkel'],
-      text: 'being watched having sex by your parents'
+      text: 'be watched having sex by your parents'
     }
   },
   'am8ehyc8byjqgar0jgpub9': {
@@ -171,7 +171,7 @@ export function _saveQuestion (question) {
   })
 }
 
-export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
+export function _saveQuestionAnswer ({ authedUser, id, answer }) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       users = {
@@ -180,18 +180,18 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
           ...users[authedUser],
           answers: {
             ...users[authedUser].answers,
-            [qid]: answer
+            [id]: answer
           }
         }
       }
 
       questions = {
         ...questions,
-        [qid]: {
-          ...questions[qid],
+        [id]: {
+          ...questions[id],
           [answer]: {
-            ...questions[qid][answer],
-            votes: questions[qid][answer].votes.concat([authedUser])
+            ...questions[id][answer],
+            votes: questions[id][answer].votes.concat([authedUser])
           }
         }
       }

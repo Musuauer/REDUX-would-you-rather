@@ -1,15 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Question from './Question'
 import styled from 'styled-components'
 import Tab from './Tab'
 
-const AllQuestionsContainer = styled.div`
-  width: 80%;
-  margin: 0 auto;
-  margin-top: 3rem;
-  border: 2px solid darkblue;
-`
 const Tabs = styled.div`
   display: flex;
   flex-wrap: no-wrap;
@@ -32,9 +27,8 @@ class AllQuestions extends Component {
     const myAnsweredQuestionsIds = Object.keys(myAnsweredQuestions)
 
     return (
-      <AllQuestionsContainer>
+      <div className='center'>
         <Tabs>
-          {console.log('tabsss', tabNames)}
           {tabNames.map(tabName =>
             <Tab
               currentTab={currentTab}
@@ -51,7 +45,9 @@ class AllQuestions extends Component {
           {this.state.currentTab === 'Unanswered questions'
             ? (this.props.questionIds.filter(id => !myAnsweredQuestionsIds.includes(id)).map((id) => (
               <li key={id}>
-                <Question id={id} />
+                <Link to={`/question/${id}`}>
+                  <Question id={id} />
+                </Link>
               </li>
             ))
             )
@@ -65,7 +61,7 @@ class AllQuestions extends Component {
           }
         </ul>
 
-      </AllQuestionsContainer>
+      </div>
     )
   }
 }

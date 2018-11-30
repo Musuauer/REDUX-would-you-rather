@@ -8,13 +8,13 @@ const StyledTab = styled.div`
   padding: .5rem;
   color: ${
   props => props.active
-    ? `white`
-    : `darkblue`
+    ? `darkblue`
+    : `white`
 };
   background: ${
   props => props.active
-    ? `darkblue`
-    : `white`
+    ? `white`
+    : `darkblue`
 };
 `
 
@@ -27,7 +27,6 @@ class Tab extends Component {
 
   render () {
     const { switchTab, props: { currentTab, tabName } } = this
-    console.log('tabname, currentTab', tabName, currentTab)
     return (
       <StyledTab
         className={currentTab === tabName ? 'tab-list-active' : ''}

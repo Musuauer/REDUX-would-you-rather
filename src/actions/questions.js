@@ -41,6 +41,6 @@ export const handleSaveQuestionAnswer = answerInfo => dispatch => {
   dispatch(showLoading)
 
   return _saveQuestionAnswer(answerInfo)
-    .then(answerInfo => dispatch(saveQuestionAnswer(answerInfo)))
+    .then(() => dispatch(saveQuestionAnswer(answerInfo)))
     .then(() => dispatch(hideLoading()))
 }
