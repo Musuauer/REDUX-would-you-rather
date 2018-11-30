@@ -4,7 +4,8 @@ import Login from './Login'
 import AllQuestions from './AllQuestions'
 import { handleInitialData } from '../actions/shared'
 import '../App.css'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import Nav from './Nav'
 
 class App extends Component {
   componentDidMount () {
@@ -15,12 +16,16 @@ class App extends Component {
     return (
       <Router>
         <div className='App'>
-          {this.props.noUser === true
-            ? <Login />
+          {this.props.user === null
+            ? <Route path='/' exact component={Login} />
             : <div>
-              <Route path='/' exact component={AllQuestions} />
-              {/* <Route path='/question/:id' component={Question} />
+              <Nav />
+              <Switch>
+                <Route path='/all' exact component={AllQuestions} />
+                {/* <Route path='/question/:id' component={Question} />
               <Route path='/new' component={NewQuestion} /> */}
+                <Redirect from='*' to={'/'} />
+              </Switch>
             </div>
           }
 
@@ -29,10 +34,10 @@ class App extends Component {
     )
   }
 }
-function mapsStateToProps ({ authedUser }) {
+function mapStateToProps ({ authedUser }) {
   return {
-    noUser: authedUser === null
+    user: authedUser
   }
 }
 
-export default connect(mapsStateToProps)(App)
+export default connect(mapStateToProps)(App)

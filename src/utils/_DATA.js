@@ -1,8 +1,8 @@
-let users = {
-  sarahedo: {
-    id: 'sarahedo',
-    name: 'Sarah Edo',
-    avatarURL: 'https://avataaars.io/?avatarStyle=Circle&topType=LongHairFro&accessoriesType=Blank&hairColor=Black&facialHairType=Blank&clotheType=Overall&clotheColor=White&eyeType=EyeRoll&eyebrowType=UpDownNatural&mouthType=Tongue&skinColor=Tanned',
+export let users = {
+  angelamerkel: {
+    id: 'angelamerkel',
+    name: 'Angela Merkel',
+    avatarURL: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairShaggyMullet&accessoriesType=Blank&hairColor=BlondeGolden&facialHairType=Blank&clotheType=BlazerShirt&eyeType=Side&eyebrowType=Default&mouthType=Serious&skinColor=Yellow',
     answers: {
       '8xf0y6ziyjabvozdd253nd': 'optionOne',
       '6ni6ok3ym7mf1p33lnez': 'optionTwo',
@@ -11,20 +11,20 @@ let users = {
     },
     questions: ['8xf0y6ziyjabvozdd253nd', 'am8ehyc8byjqgar0jgpub9']
   },
-  tylermcginnis: {
-    id: 'tylermcginnis',
-    name: 'Tyler McGinnis',
-    avatarURL: 'https://avataaars.io/?avatarStyle=Circle&topType=Eyepatch&facialHairType=MoustacheMagnum&facialHairColor=Platinum&clotheType=ShirtScoopNeck&clotheColor=Gray01&eyeType=Cry&eyebrowType=UnibrowNatural&mouthType=Sad&skinColor=Yellow',
+  donaldtrump: {
+    id: 'donaldtrump',
+    name: 'Donald Trump',
+    avatarURL: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairFrizzle&accessoriesType=Blank&hairColor=BlondeGolden&facialHairType=Blank&clotheType=BlazerShirt&clotheColor=Gray01&eyeType=Squint&eyebrowType=Angry&mouthType=ScreamOpen&skinColor=Tanned',
     answers: {
       'vthrdm985a262al8qx3do': 'optionOne',
       'xj352vofupe1dqz9emx13r': 'optionTwo'
     },
     questions: ['loxhs1bqm25b708cmbf3g', 'vthrdm985a262al8qx3do']
   },
-  johndoe: {
-    id: 'johndoe',
-    name: 'John Doe',
-    avatarURL: 'https://avataaars.io/?avatarStyle=Circle&topType=LongHairBob&accessoriesType=Wayfarers&hairColor=BlondeGolden&facialHairType=BeardMagestic&facialHairColor=Red&clotheType=ShirtScoopNeck&clotheColor=PastelYellow&eyeType=Happy&eyebrowType=Angry&mouthType=Sad&skinColor=Pale',
+  vladimirputin: {
+    id: 'vladimirputin',
+    name: 'Vladimir Putin',
+    avatarURL: 'https://avataaars.io/?avatarStyle=Circle&topType=ShortHairSides&accessoriesType=Blank&hairColor=BlondeGolden&facialHairType=Blank&clotheType=BlazerSweater&eyeType=EyeRoll&eyebrowType=Default&mouthType=Smile&skinColor=Pale',
     answers: {
       'xj352vofupe1dqz9emx13r': 'optionOne',
       'vthrdm985a262al8qx3do': 'optionTwo',
@@ -37,80 +37,80 @@ let users = {
 let questions = {
   '8xf0y6ziyjabvozdd253nd': {
     id: '8xf0y6ziyjabvozdd253nd',
-    author: 'sarahedo',
+    author: 'angelamerkel',
     timestamp: 1467166872634,
     optionOne: {
-      votes: ['sarahedo'],
-      text: 'have horrible short term memory'
+      votes: ['angelamerkel'],
+      text: 'marry someone that you don’t love'
     },
     optionTwo: {
       votes: [],
-      text: 'have horrible long term memory'
+      text: 'marry someone that doesn’t love you'
     }
   },
   '6ni6ok3ym7mf1p33lnez': {
     id: '6ni6ok3ym7mf1p33lnez',
-    author: 'johndoe',
+    author: 'vladimirputin',
     timestamp: 1468479767190,
     optionOne: {
       votes: [],
-      text: 'become a superhero'
+      text: 'watch your parents having sex'
     },
     optionTwo: {
-      votes: ['johndoe', 'sarahedo'],
-      text: 'become a supervillain'
+      votes: ['vladimirputin', 'angelamerkel'],
+      text: 'being watched having sex by your parents'
     }
   },
   'am8ehyc8byjqgar0jgpub9': {
     id: 'am8ehyc8byjqgar0jgpub9',
-    author: 'sarahedo',
+    author: 'angelamerkel',
     timestamp: 1488579767190,
     optionOne: {
       votes: [],
-      text: 'be telekinetic'
+      text: 'know how you are going to die'
     },
     optionTwo: {
-      votes: ['sarahedo'],
-      text: 'be telepathic'
+      votes: ['angelamerkel'],
+      text: 'when you are going to die'
     }
   },
   'loxhs1bqm25b708cmbf3g': {
     id: 'loxhs1bqm25b708cmbf3g',
-    author: 'tylermcginnis',
+    author: 'donaldtrump',
     timestamp: 1482579767190,
     optionOne: {
       votes: [],
-      text: 'be a front-end developer'
+      text: 'always wear winter clothes in summer '
     },
     optionTwo: {
-      votes: ['sarahedo'],
-      text: 'be a back-end developer'
+      votes: ['angelamerkel'],
+      text: 'always wear summer clothes in winter'
     }
   },
   'vthrdm985a262al8qx3do': {
     id: 'vthrdm985a262al8qx3do',
-    author: 'tylermcginnis',
+    author: 'donaldtrump',
     timestamp: 1489579767190,
     optionOne: {
-      votes: ['tylermcginnis'],
-      text: 'find $50 yourself'
+      votes: ['donaldtrump'],
+      text: 'have out of control body hair'
     },
     optionTwo: {
-      votes: ['johndoe'],
-      text: 'have your best friend find $500'
+      votes: ['vladimirputin'],
+      text: 'have out of control body odor'
     }
   },
   'xj352vofupe1dqz9emx13r': {
     id: 'xj352vofupe1dqz9emx13r',
-    author: 'johndoe',
+    author: 'vladimirputin',
     timestamp: 1493579767190,
     optionOne: {
-      votes: ['johndoe'],
-      text: 'write JavaScript'
+      votes: ['vladimirputin'],
+      text: 'have edible spaghetti hair that regrows'
     },
     optionTwo: {
-      votes: ['tylermcginnis'],
-      text: 'write Swift'
+      votes: ['donaldtrump'],
+      text: 'have maple syrup sweat'
     }
   }
 }

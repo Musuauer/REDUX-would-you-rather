@@ -40,38 +40,33 @@ class Question extends Component {
           className='avatar'
         />
         <div className='question-info'>
-          <div>
-            <span>{name} asks</span>
-            <h2>
+          <span>{name} asks</span>
+          <h3>
               Would you rather...
-            </h2>
-            <FormControl
-              component='fieldset'
-            // className={classes.formControl}
+          </h3>
+          <FormControl
+            component='fieldset'
+          >
+            <RadioGroup
+              aria-label='gender'
+              name='gender2'
+              value={this.state.value}
+              onChange={this.handleChange}
             >
-              <RadioGroup
-                aria-label='gender'
-                name='gender2'
-                // className={classes.group}
-                value={this.state.value}
-                onChange={this.handleChange}
-              >
-                <FormControlLabel
-                  value='optionOne'
-                  control={<Radio color='primary' />}
-                  label={optionOne.text}
-                  labelPlacement='start'
-                />
-                <FormControlLabel
-                  value='optionTwo'
-                  control={<Radio color='primary' />}
-                  label={optionTwo.text}
-                  labelPlacement='start'
-                />
-              </RadioGroup>
-            </FormControl>
-
-          </div>
+              <FormControlLabel
+                value='optionOne'
+                control={<Radio color='primary' />}
+                label={optionOne.text}
+                labelPlacement='start'
+              />
+              <FormControlLabel
+                value='optionTwo'
+                control={<Radio color='primary' />}
+                label={optionTwo.text}
+                labelPlacement='start'
+              />
+            </RadioGroup>
+          </FormControl>
         </div>
       </Link>
     )

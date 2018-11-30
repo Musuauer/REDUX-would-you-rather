@@ -6,10 +6,10 @@ import InputLabel from '@material-ui/core/InputLabel'
 import MenuItem from '@material-ui/core/MenuItem'
 import Select from '@material-ui/core/Select'
 import styled from 'styled-components'
-import Button from '@material-ui/core/Button'
 import { setAuthedUser } from '../actions/authedUser'
+import { users } from '../utils/_DATA'
 
-const Modal = styled.div`
+const LoginForm = styled.div`
 width: 40%;
 margin: 0 auto;
 margin-top: 3rem;
@@ -24,9 +24,6 @@ const titleStyle = {
   marginTop: 0,
   letterSpacing: 1.2
 }
-const buttonStyle = {
-  marginTop: '3rem'
-}
 
 class Login extends Component {
   state = {
@@ -38,7 +35,8 @@ class Login extends Component {
     event.preventDefault()
     const id = event.target.value
     this.setState({ id })
-    this.props.dispatch(setAuthedUser(id))
+    setTimeout(() => this.props.dispatch(setAuthedUser(id)), 500)
+    this.props.history.push('/all')
   }
 
   handleClose = () => {
@@ -53,10 +51,10 @@ class Login extends Component {
     const { id, open } = this.state
 
     return (
-      <Modal>
+      <LoginForm>
         <h1
           style={titleStyle}>
-            Would you rather... politics!
+            Would you rather...
         </h1>
         <FormControl
           onSubmit={this.startGame}
@@ -74,23 +72,19 @@ class Login extends Component {
               id: 'open-select'
             }}
           >
-            <MenuItem value={'sarahedo'}>Sarah Edo</MenuItem>
-            <MenuItem value={'tylermcginnis'}>Tyler McGinnis</MenuItem>
-            <MenuItem value={'johndoe'}>John Doe</MenuItem>
+            {Object.entries(users).map(user =>
+              <MenuItem
+                value={user[1].id}
+                key={user[1].id}
+              >
+                {user[1].name}
+              </MenuItem>
+            )
+            }
           </Select>
-          <Button
-            fullWidth
-            variant='outlined'
-            color='primary'
-            style={buttonStyle}
-            type='submit'
-            disabled={id === ''}
-          >
-            Start the game!
-          </Button>
         </FormControl>
 
-      </Modal>
+      </LoginForm>
     )
   }
 }
