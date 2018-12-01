@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Nav from './Nav'
 import NewQuestion from './NewQuestion'
 import QuestionPage from './QuestionPage'
+import LeaderBoard from './LeaderBoard'
 
 class App extends Component {
   componentDidMount () {
@@ -25,7 +26,8 @@ class App extends Component {
               <Switch>
                 <Route path='/all' exact component={AllQuestions} />
                 <Route path='/question/:id' component={QuestionPage} />
-                <Route path='/new' exact component={NewQuestion} />
+                <Route path='/add' exact component={NewQuestion} />
+                <Route path='/leaderboard' exact component={LeaderBoard} />
                 <Redirect from='*' to={'/'} />
               </Switch>
             </div>
