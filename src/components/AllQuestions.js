@@ -25,7 +25,7 @@ class AllQuestions extends Component {
     const { setCurrentTab, state: { currentTab, tabNames }, props: { myAnsweredQuestions } } = this
 
     const myAnsweredQuestionsIds = Object.keys(myAnsweredQuestions)
-
+    console.log('myanswered::', myAnsweredQuestions)
     return (
       <div className='center'>
         <Tabs>

@@ -15,8 +15,6 @@ export const questions = (state = {}, action) => {
         [question.id]: question
       }
     case SAVE_QUESTION_ANSWER :
-      console.log(action)
-
       const { authedUser, id, answer } = action.answerInfo
       // adapted from the _saveQuestionAnswer function in _DATA.js
       return {
