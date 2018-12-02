@@ -7,7 +7,10 @@ class QuestionPage extends Component {
     const { id } = this.props
     return (
       <div style={{ marginTop: '3rem' }}>
-        <Question id={id} />
+        <Question
+          id={id}
+          options
+        />
 
       </div>
     )

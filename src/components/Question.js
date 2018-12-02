@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 import Radio from '@material-ui/core/Radio'
 import FormControl from '@material-ui/core/FormControl'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
 import RadioGroup from '@material-ui/core/RadioGroup'
 import { handleSaveQuestionAnswer } from '../actions/questions'
+import Button from '@material-ui/core/Button'
 
 class Question extends Component {
   state = {
@@ -20,17 +21,21 @@ class Question extends Component {
 
     const answerInfo = {authedUser, id, answer}
     this.props.dispatch(handleSaveQuestionAnswer(answerInfo))
-    this.props.history.push('/all')
+
+    // this.props.history.push('/all')
   }
 
   render () {
-    const { question, users } = this.props
+    const { question, users, options, id } = this.props
 
     if (question === null) {
       return <p>This question doesn't exist</p>
     }
     const { author, optionOne, optionTwo } = question
     const { avatarURL, name } = users[author]
+
+    const { answer } = this.state
+    console.log('question props:', this.props)
 
     return (
       <div className='card'>
@@ -44,29 +49,52 @@ class Question extends Component {
           <h4>
               Would you rather...
           </h4>
-          <FormControl
-            component='fieldset'
-          >
-            <RadioGroup
-              aria-label='gender'
-              name='gender2'
-              value={this.state.answer}
-              onChange={this.handleChange}
-            >
-              <FormControlLabel
-                value='optionOne'
-                control={<Radio color='primary' />}
-                label={optionOne.text}
-                labelPlacement='end'
-              />
-              <FormControlLabel
-                value='optionTwo'
-                control={<Radio color='primary' />}
-                label={optionTwo.text}
-                labelPlacement='end'
-              />
-            </RadioGroup>
-          </FormControl>
+
+          {!options
+            ? <div className='question-short'>
+              {optionOne.text}...
+              <NavLink
+                to={`/question/${id}`}
+                className='navlink'
+              >
+                <Button
+                  variant='contained'
+                  color='primary'
+                  className='solid-button'
+                >
+            Answer question
+                </Button>
+              </NavLink>
+            </div>
+
+            : (
+              <FormControl
+                component='fieldset'
+              >
+                <RadioGroup
+                  aria-label='gender'
+                  name='gender2'
+                  value={this.state.answer}
+                  onChange={this.handleChange}
+                >
+                  <FormControlLabel
+                    value='optionOne'
+                    control={<Radio color='primary' />}
+                    label={optionOne.text}
+                    labelPlacement='end'
+                  />
+                 
+                  <FormControlLabel
+                    value='optionTwo'
+                    control={<Radio color='primary' />}
+                    label={optionTwo.text}
+                    labelPlacement='end'
+                  />
+                </RadioGroup>
+              </FormControl>
+            )
+          }
+
         </div>
       </div>
     )

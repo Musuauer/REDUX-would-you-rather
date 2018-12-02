@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import Question from './Question'
 import styled from 'styled-components'
 import Tab from './Tab'
@@ -45,11 +44,10 @@ class AllQuestions extends Component {
           {this.state.currentTab === 'Unanswered questions'
             ? (this.props.questionIds.filter(id => !myAnsweredQuestionsIds.includes(id)).map((id) => (
               <li key={id}>
-                <Link to={`/question/${id}`}>
-                  <Question
-                    id={id}
-                  />
-                </Link>
+                <Question
+                  id={id}
+                  options={false}
+                />
               </li>
             ))
             )
@@ -58,6 +56,7 @@ class AllQuestions extends Component {
                 <Question
                   id={id}
                   myAnswer={myAnsweredQuestions[id]}
+                  options
                 />
               </li>
             ))
