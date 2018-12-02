@@ -4,13 +4,14 @@ import { receiveQuestions } from '../actions/questions'
 import { setAuthedUser } from './authedUser'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-export const handleInitialData = () => dispatch => {
+export const handleInitialData = (loggedUser) => dispatch => {
   dispatch(showLoading())
   return getInitialData()
-    .then(({ users, questions, authedId }) => {
+    .then(({ users, questions }) => {
+      console.log('get inital data', loggedUser)
       dispatch(receiveUsers(users))
       dispatch(receiveQuestions(questions))
-      dispatch(setAuthedUser(authedId))
+      dispatch(setAuthedUser(loggedUser))
       dispatch(hideLoading())
     })
 }

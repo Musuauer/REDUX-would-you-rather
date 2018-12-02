@@ -5,7 +5,6 @@ import UserCard from './UserCard'
 class Leaderboard extends Component {
   render () {
     const { users } = this.props
-    console.log('users...', users)
     const usersArray = Object.values(users)
     return (
       <div className='center'>

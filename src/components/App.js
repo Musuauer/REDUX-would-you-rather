@@ -13,7 +13,10 @@ import LeaderBoard from './LeaderBoard'
 class App extends Component {
   componentDidMount () {
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true
-    this.props.dispatch(handleInitialData())
+    const loggedUser = this.props.user || null
+    console.log('comoponent mount log', loggedUser)
+
+    this.props.dispatch(handleInitialData(loggedUser))
   }
   render () {
     return (
@@ -21,16 +24,17 @@ class App extends Component {
         <div className='App'>
           {this.props.user === null
             ? <Route path='/' exact component={Login} />
-            : <div>
+            : <React.Fragment>
               <Nav />
               <Switch>
                 <Route path='/all' exact component={AllQuestions} />
                 <Route path='/question/:id' component={QuestionPage} />
                 <Route path='/add' exact component={NewQuestion} />
                 <Route path='/leaderboard' exact component={LeaderBoard} />
-                <Redirect from='*' to={'/'} />
+                <Redirect from='*' to={'/all'} />
               </Switch>
-            </div>
+            </React.Fragment>
+
           }
 
         </div>

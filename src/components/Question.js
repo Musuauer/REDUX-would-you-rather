@@ -9,7 +9,7 @@ import { handleSaveQuestionAnswer } from '../actions/questions'
 
 class Question extends Component {
   state = {
-    answer: ''
+    answer: this.props.myAnswer || ''
   }
 
   handleChange = event => {
@@ -33,13 +33,13 @@ class Question extends Component {
     const { avatarURL, name } = users[author]
 
     return (
-      <div className='question'>
+      <div className='card'>
         <img
           src={avatarURL}
           alt={`Avatar of ${name}`}
           className='avatar'
         />
-        <div className='question-info'>
+        <div className='card-info'>
           <span>{name} asks</span>
           <h4>
               Would you rather...
@@ -72,7 +72,7 @@ class Question extends Component {
     )
   }
 }
-function mapStateToProps ({authedUser, users, questions}, { id }) {
+function mapStateToProps ({authedUser, users, questions}, { id, myAnswer }) {
   return {
     authedUser,
     users,

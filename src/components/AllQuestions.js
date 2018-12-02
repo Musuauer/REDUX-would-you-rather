@@ -25,7 +25,7 @@ class AllQuestions extends Component {
     const { setCurrentTab, state: { currentTab, tabNames }, props: { myAnsweredQuestions } } = this
 
     const myAnsweredQuestionsIds = Object.keys(myAnsweredQuestions)
-    console.log('myanswered::', myAnsweredQuestions)
+
     return (
       <div className='center'>
         <Tabs>
@@ -46,14 +46,19 @@ class AllQuestions extends Component {
             ? (this.props.questionIds.filter(id => !myAnsweredQuestionsIds.includes(id)).map((id) => (
               <li key={id}>
                 <Link to={`/question/${id}`}>
-                  <Question id={id} />
+                  <Question
+                    id={id}
+                  />
                 </Link>
               </li>
             ))
             )
             : (this.props.questionIds.filter(id => myAnsweredQuestionsIds.includes(id)).map((id) => (
               <li key={id}>
-                <Question id={id} />
+                <Question
+                  id={id}
+                  myAnswer={myAnsweredQuestions[id]}
+                />
               </li>
             ))
 
