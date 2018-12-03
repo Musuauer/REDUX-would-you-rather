@@ -12,6 +12,8 @@ import Meter from './Meter'
 class Question extends Component {
   state = {
     answer: '',
+    optionOneVotes: '',
+    optionTwoVotes: '',
     optionOnePercent: '',
     optionTwoPercent: '',
     nextQuestion: ''
@@ -21,24 +23,35 @@ class Question extends Component {
     this.props.myAnswer && this.setState({ answer: this.props.myAnswer })
 
     this.props.unansweredquestions && this.setState({ nextQuestion: this.props.unansweredquestions[1] })
+  }
 
+  updateResults = () => {
     const totalUsers = Object.keys(this.props.users).length
 
     const optionOnePercent = this.optionPercent(this.props.question.optionOne, totalUsers)
 
     const optionTwoPercent = this.optionPercent(this.props.question.optionTwo, totalUsers)
 
-    this.setState({ optionOnePercent, optionTwoPercent })
+    const optionOneVotes = this.props.question.optionOne.votes.length
+    const optionTwoVotes = this.props.question.optionTwo.votes.length
+    console.log('NEW INFO????', optionOneVotes, optionTwoVotes)
+    this.setState({
+      optionOnePercent,
+      optionTwoPercent,
+      optionOneVotes,
+      optionTwoVotes
+    })
   }
 
   handleChange = event => {
     this.setState({ answer: event.target.value })
-    debugger
+
     const answer = event.target.value
     const { id, authedUser } = this.props
 
     const answerInfo = {authedUser, id, answer}
     this.props.dispatch(handleSaveQuestionAnswer(answerInfo))
+      .then(newState => this.updateResults())
   }
 
   optionPercent = (option, totalUsers) => {
@@ -47,21 +60,19 @@ class Question extends Component {
   }
 
   next = () => {
-    console.log('NEXTQUESTION222', this.state.nextQuestion)
     this.props.history.push(`/question/${this.state.nextQuestion}`)
     this.setState({ answer: '' })
     this.props.unansweredquestions && this.setState({ nextQuestion: this.props.unansweredquestions[1] })
   }
 
   render () {
-    const { question, users, options, id, myAnswer } = this.props
+    const { question, users, options, id, myAnswer, unansweredquestions } = this.props
     const { author, optionOne, optionTwo } = question
     const { avatarURL, name } = users[author]
 
-    const { answer } = this.state
+    const { answer, optionOneVotes, optionTwoVotes, optionOnePercent, optionTwoPercent, nextQuestion } = this.state
 
-    console.log('qqqquestion props', this.props)
-    console.log('NEXTQUESTION111', this.state.nextQuestion)
+    console.log('question props', this.props)
 
     if (question === null) {
       return <p>This question doesn't exist</p>
@@ -87,7 +98,7 @@ class Question extends Component {
                 <NavLink
                   to={`/question/${id}`}
                   className='navlink'
-                  unansweredquestions={this.props.unansweredquestions}
+                  unansweredquestions={unansweredquestions}
                 >
                   <Button
                     variant='contained'
@@ -106,7 +117,7 @@ class Question extends Component {
                   <RadioGroup
                     aria-label='gender'
                     name='gender2'
-                    value={this.state.answer}
+                    value={answer}
                     onChange={this.handleChange}
                   >
                     <FormControlLabel
@@ -118,14 +129,14 @@ class Question extends Component {
                     {answer &&
                     <div className='meter'>
                       <Meter
-                        percent={this.state.optionOnePercent}
+                        percent={optionOnePercent}
                         width={250}
                         height={17}
                         color='darkblue'
-                        label={this.state.optionOnePercent}
+                        label={optionOnePercent}
                       />
                       <div>
-                        {this.state.optionOnePercent * 100} %
+                        {optionOneVotes} vote{optionOneVotes === 1 ? '' : 's '}= {optionOnePercent * 100} %
                       </div>
                     </div>
 
@@ -139,14 +150,14 @@ class Question extends Component {
                     {answer &&
                     <div className='meter'>
                       <Meter
-                        percent={this.state.optionTwoPercent}
+                        percent={optionTwoPercent}
                         width={250}
                         height={17}
                         color='darkblue'
-                        label={this.state.optionTwoPercent}
+                        label={optionTwoPercent}
                       />
                       <div>
-                        {this.state.optionTwoPercent * 100} %
+                        {optionTwoVotes} votes = {optionTwoPercent * 100} %
                       </div>
                     </div>
                     }
@@ -158,18 +169,18 @@ class Question extends Component {
           </div>
         </div>
         {
-          options && !myAnswer && this.state.nextQuestion &&
+          options && !myAnswer && nextQuestion &&
           <Button
             variant='contained'
             color='primary'
-            disabled={this.state.answer === ''}
+            disabled={answer === ''}
             onClick={this.next}
           >
           Next question
           </Button>
         }
         {
-          !this.state.nextQuestion && myAnswer &&
+          !nextQuestion && myAnswer &&
           <h3>
             You answered all the available questions!
           </h3>

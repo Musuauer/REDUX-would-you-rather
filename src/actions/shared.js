@@ -8,7 +8,6 @@ export const handleInitialData = (loggedUser) => dispatch => {
   dispatch(showLoading())
   return getInitialData()
     .then(({ users, questions }) => {
-      console.log('get inital data', loggedUser)
       dispatch(receiveUsers(users))
       dispatch(receiveQuestions(questions))
       dispatch(setAuthedUser(loggedUser))

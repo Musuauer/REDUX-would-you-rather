@@ -14,7 +14,6 @@ class App extends Component {
   componentDidMount () {
     window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true
     const loggedUser = this.props.user || null
-    console.log('comoponent mount log', loggedUser)
 
     this.props.dispatch(handleInitialData(loggedUser))
   }

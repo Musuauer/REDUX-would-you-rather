@@ -10,7 +10,6 @@ export const users = (state = {}, action) => {
       }
     case SAVE_QUESTION_ANSWER:
       const { authedUser, id, answer } = action.answerInfo
-      console.log('xxx', action)
       return {
         ...state,
         [authedUser]: {
