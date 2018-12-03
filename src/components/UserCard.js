@@ -10,6 +10,11 @@ position: absolute;
     padding: 1rem;
     color: white;
     background-color: darkblue;
+
+    @media (max-width: 820px) {
+    position: relative;
+    margin-right: 3rem;
+    }
 `
 
 const UserCard = ({ name, avatarURL, questionsAsked, questionsAnswered, totalQuestions }) => (

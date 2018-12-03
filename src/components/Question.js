@@ -16,6 +16,10 @@ left: 0;
 transform: translateX(-110%);
 color: darkgoldenrod;
 font-style: italic;
+@media (max-width: 820px) {
+  transform: translateX(15%);
+  font-size: .9rem;
+}
 
 `
 
@@ -142,7 +146,7 @@ class Question extends Component {
                       control={<Radio color='primary' />}
                       label={optionOne.text}
                       labelPlacement='end'
-                      disabled={answer}
+                      disabled={answer.length > 0}
 
                     />
 
@@ -173,7 +177,7 @@ class Question extends Component {
                       control={<Radio color='primary' />}
                       label={optionTwo.text}
                       labelPlacement='end'
-                      disabled={answer}
+                      disabled={answer.length > 0}
 
                     />
                     {answer &&

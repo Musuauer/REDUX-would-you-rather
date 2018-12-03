@@ -14,7 +14,7 @@ const StyledTab = styled.div`
   background: ${
   props => props.active
     ? `white`
-    : `darkblue`
+    : `lightgray`
 };
 `
 

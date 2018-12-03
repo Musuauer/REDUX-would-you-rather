@@ -1,14 +1,16 @@
 body, html{
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+          position: relative;
 
 }
 html,body{ margin:0; padding:0; height:100%; width:100%; }
 
 .App {
   position: relative;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
+  margin-top: 5rem;
 }
 
 a{
@@ -37,9 +39,11 @@ a{
   justify-content: center;
   align-items: flex-start;
   margin: 4rem auto;
-  width: 30rem;
+  width: 60%;
   padding: 2rem;
-  box-shadow: 7px 12px 45px -9px rgba(0,0,0,0.78);
+  -webkit-box-shadow: 5px 5px 25px -9px rgba(0,0,0,0.64);
+  -moz-box-shadow: 5px 5px 25px -9px rgba(0,0,0,0.64);
+  box-shadow: 5px 5px 25px -9px rgba(0,0,0,0.64);
 }
 .avatar{
   height: 100%;
@@ -90,3 +94,142 @@ textarea{
 textarea::placeholder {
   font-size: 1rem;
 }
+.mobile-nav{
+  display: none;
+}
+
+/* ---- Nav ---- */
+
+.nav ul{
+  padding: 0 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-decoration: none;
+
+}
+
+.nav li {
+  list-style: none;
+  display: inline-block;
+  height: 2rem;
+  line-height: 2;
+}
+
+.active{
+  border-bottom: 2px solid darkblue;
+}
+
+.avatar-navi{
+  height: 2rem;
+  vertical-align: middle;
+}
+.name-navi{
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+
+/*---------------MEDIA QUERIES---------------------------*/
+
+@media only screen and (max-width: 820px){
+  .App{
+    width: 100%;
+  }
+ .center{
+  width: 95%;
+  border: none;
+  margin-top: 0;
+}
+ .card{
+  width: 90%;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 1rem 0 1rem 1rem;
+ }
+ .card-info{
+   text-align: center;
+   margin: 0;
+   margin-top: 1rem;
+ }
+ .card-info h4{
+   text-align: left;
+ }
+.avatar{
+  margin-top: -.5rem;
+}
+.nav{
+  display: none;
+}
+textarea{
+  border: 1px solid darkblue;
+  height: 5rem;
+}
+/*-----Hamburger menu------*/
+
+.mobile-nav{
+  margin-top: 0rem;
+  width: 100%;
+  position: fixed;
+  height: 50px;
+  display: inline-block;
+  background-color: white;
+}
+
+
+.menu-btn {
+  font-size: 18px;
+  font-weight: 200;
+  z-index: 9999;
+  right: 1rem;
+  top: 1rem;
+  position: fixed;
+}
+
+.menu-content{
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 3.5rem;
+  position: relative;
+  height: 100vh;
+}
+.menu-content ul{
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-decoration: none;
+
+}
+
+.menu-content li {
+  list-style: none;
+  display: inline-block;
+  height: 5rem;
+  line-height: 1;
+  font-size: 1.1rem;
+}
+
+.responsive-menu{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: 0 auto;
+  background-color: white;
+  padding-bottom: 1rem;
+}
+.username{
+  display: flex !important;
+  flex-direction: column;
+  align-items: baseline;
+}
+.name-navi{
+  margin-bottom: 1rem;
+}
+.avatar-navi{
+  height: 4rem;
+  margin-bottom: 1rem;
+}
+
+
+  }

@@ -25,7 +25,7 @@ class App extends Component {
           {this.props.user === null
             ? <Route path='/' component={Login} />
             : <React.Fragment>
-              <Nav />
+              
               <Switch>
                 <Route path='/all' exact component={AllQuestions} />
                 <Route path='/question/:id' exact component={QuestionPage} />
@@ -33,6 +33,7 @@ class App extends Component {
                 <Route path='/leaderboard' exact component={LeaderBoard} />
                 <Route component={NoMatch} />
               </Switch>
+              <Nav />
             </React.Fragment>
 
           }

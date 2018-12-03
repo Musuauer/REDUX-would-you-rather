@@ -10,11 +10,11 @@ import { setAuthedUser } from '../actions/authedUser'
 import { users } from '../utils/_DATA'
 
 const LoginForm = styled.div`
-width: 40%;
+width: 80%;
 margin: 0 auto;
 margin-top: 3rem;
 border: 2px solid darkblue;
-padding: 3rem;
+padding: 3rem 1rem;
 display: flex;
 flex-wrap: wrap;
 justify-content: center;
