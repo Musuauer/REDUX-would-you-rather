@@ -4,11 +4,12 @@ import Login from './Login'
 import AllQuestions from './AllQuestions'
 import { handleInitialData } from '../actions/shared'
 import '../App.css'
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Nav from './Nav'
 import NewQuestion from './NewQuestion'
 import QuestionPage from './QuestionPage'
 import LeaderBoard from './LeaderBoard'
+import NoMatch from './NoMatch'
 
 class App extends Component {
   componentDidMount () {
@@ -22,15 +23,15 @@ class App extends Component {
       <Router>
         <div className='App'>
           {this.props.user === null
-            ? <Route path='/' exact component={Login} />
+            ? <Route path='/' component={Login} />
             : <React.Fragment>
               <Nav />
               <Switch>
                 <Route path='/all' exact component={AllQuestions} />
-                <Route path='/question/:id' component={QuestionPage} />
+                <Route path='/question/:id' exact component={QuestionPage} />
                 <Route path='/add' exact component={NewQuestion} />
                 <Route path='/leaderboard' exact component={LeaderBoard} />
-                <Redirect from='*' to={'/all'} />
+                <Route component={NoMatch} />
               </Switch>
             </React.Fragment>
 

@@ -8,6 +8,16 @@ import RadioGroup from '@material-ui/core/RadioGroup'
 import { handleSaveQuestionAnswer } from '../actions/questions'
 import Button from '@material-ui/core/Button'
 import Meter from './Meter'
+import styled from 'styled-components'
+
+const YourAnswer = styled.div`
+position: absolute;
+left: 0;
+transform: translateX(-110%);
+color: darkgoldenrod;
+font-style: italic;
+
+`
 
 class Question extends Component {
   state = {
@@ -22,10 +32,12 @@ class Question extends Component {
   componentDidMount () {
     this.props.myAnswer && this.setState({ answer: this.props.myAnswer })
 
+    this.populateResults()
+
     this.props.unansweredquestions && this.setState({ nextQuestion: this.props.unansweredquestions[1] })
   }
 
-  updateResults = () => {
+  populateResults = () => {
     const totalUsers = Object.keys(this.props.users).length
 
     const optionOnePercent = this.optionPercent(this.props.question.optionOne, totalUsers)
@@ -34,7 +46,7 @@ class Question extends Component {
 
     const optionOneVotes = this.props.question.optionOne.votes.length
     const optionTwoVotes = this.props.question.optionTwo.votes.length
-    console.log('NEW INFO????', optionOneVotes, optionTwoVotes)
+
     this.setState({
       optionOnePercent,
       optionTwoPercent,
@@ -46,12 +58,14 @@ class Question extends Component {
   handleChange = event => {
     this.setState({ answer: event.target.value })
 
+    this.populateResults()
+
     const answer = event.target.value
     const { id, authedUser } = this.props
 
     const answerInfo = {authedUser, id, answer}
     this.props.dispatch(handleSaveQuestionAnswer(answerInfo))
-      .then(newState => this.updateResults())
+      .then(newState => this.populateResults())
   }
 
   optionPercent = (option, totalUsers) => {
@@ -61,7 +75,14 @@ class Question extends Component {
 
   next = () => {
     this.props.history.push(`/question/${this.state.nextQuestion}`)
-    this.setState({ answer: '' })
+    this.setState({
+      answer: '',
+      optionOneVotes: '',
+      optionTwoVotes: '',
+      optionOnePercent: '',
+      optionTwoPercent: ''
+    })
+
     this.props.unansweredquestions && this.setState({ nextQuestion: this.props.unansweredquestions[1] })
   }
 
@@ -73,10 +94,6 @@ class Question extends Component {
     const { answer, optionOneVotes, optionTwoVotes, optionOnePercent, optionTwoPercent, nextQuestion } = this.state
 
     console.log('question props', this.props)
-
-    if (question === null) {
-      return <p>This question doesn't exist</p>
-    }
 
     return (
       <React.Fragment>
@@ -125,9 +142,19 @@ class Question extends Component {
                       control={<Radio color='primary' />}
                       label={optionOne.text}
                       labelPlacement='end'
+                      disabled={answer}
+
                     />
+
+                    {/* --- Meter adapted from https://codepen.io/bmorelli25/pen/OgevxO--- */}
+
                     {answer &&
                     <div className='meter'>
+                      {answer === 'optionOne' &&
+                      <YourAnswer>
+                        your answer
+                      </YourAnswer>
+                      }
                       <Meter
                         percent={optionOnePercent}
                         width={250}
@@ -146,9 +173,16 @@ class Question extends Component {
                       control={<Radio color='primary' />}
                       label={optionTwo.text}
                       labelPlacement='end'
+                      disabled={answer}
+
                     />
                     {answer &&
                     <div className='meter'>
+                      {answer === 'optionTwo' &&
+                      <YourAnswer>
+                      your answer
+                      </YourAnswer>
+                      }
                       <Meter
                         percent={optionTwoPercent}
                         width={250}
@@ -180,7 +214,9 @@ class Question extends Component {
           </Button>
         }
         {
-          !nextQuestion && myAnswer &&
+          (!this.props.location.pathname === '/all') &&
+          !nextQuestion &&
+          myAnswer &&
           <h3>
             You answered all the available questions!
           </h3>

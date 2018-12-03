@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Question from './Question'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
+import { questions } from '../utils/_DATA'
 
 class QuestionPage extends Component {
   render () {
-    const { id } = this.props
+    const { id, questionIds, answeredQuestionsIds } = this.props
 
-    const unansweredquestions = this.props.questionIds.filter(id => !this.props.answeredQuestionsIds.includes(id))
+    // check if the question ID exists in the original questions, to prevent reaching an undefined path when typing a wrong ID in the URL or trying to access a question page from a new question, since this 'back-end' doesn't allow it
+    const originalQuestionsIds = Object.keys(questions)
+    if (!originalQuestionsIds.includes(id)) {
+      return <Redirect to='/' />
+    }
+
+    const unansweredquestions = questionIds.filter(id => !answeredQuestionsIds.includes(id))
 
     console.log('question page props', this.props)
     return (
