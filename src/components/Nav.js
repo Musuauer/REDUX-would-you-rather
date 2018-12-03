@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button'
 import HamburgerMenu from 'react-hamburger-menu'
 
 const Navi = styled.div`
-background-color: white;
+    background-color: white;
     width: 79.9%;
     height: 50px;
     position: fixed;
