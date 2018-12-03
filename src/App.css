@@ -54,12 +54,18 @@ a{
 .card-info span{
   font-size: 1rem;
 }
+.meter {
+  margin-bottom: 10px;
+}
 .center{
   width: 80%;
   margin: 0 auto;
   margin-top: 3rem;
   border: 2px solid darkblue;
+  text-align: center;
+  padding-bottom: 3rem;
 }
+
 .center h3{
   text-align: center;
   margin-top: 2rem;

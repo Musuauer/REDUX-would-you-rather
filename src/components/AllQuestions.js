@@ -13,7 +13,16 @@ const Tabs = styled.div`
 class AllQuestions extends Component {
   state = {
     tabNames: ['Unanswered questions', 'Answered questions'],
-    currentTab: 'Unanswered questions'
+    currentTab: 'Unanswered questions',
+    myAnsweredQuestions: [],
+    myUnansweredQuestions: []
+
+  }
+
+  componentDidMount = () => {
+    this.setState({ myUnansweredQuestions: this.props.questionIds.filter(id => !this.props.myAnsweredQuestionsIds.includes(id)) })
+
+    this.setState({ myAnsweredQuestions: this.props.questionIds.filter(id => this.props.myAnsweredQuestionsIds.includes(id)) })
   }
 
   setCurrentTab = (tab) => {
@@ -21,9 +30,7 @@ class AllQuestions extends Component {
   }
 
   render () {
-    const { setCurrentTab, state: { currentTab, tabNames }, props: { myAnsweredQuestions } } = this
-
-    const myAnsweredQuestionsIds = Object.keys(myAnsweredQuestions)
+    const { setCurrentTab, state: { currentTab, tabNames }, props: { myAnswers } } = this
 
     return (
       <div className='center'>
@@ -42,24 +49,26 @@ class AllQuestions extends Component {
 
         <ul className='questions-list'>
           {this.state.currentTab === 'Unanswered questions'
-            ? (this.props.questionIds.filter(id => !myAnsweredQuestionsIds.includes(id)).map((id) => (
-              <li key={id}>
-                <Question
-                  id={id}
-                  options={false}
-                />
-              </li>
-            ))
+            ? (
+              this.state.myUnansweredQuestions.map((id) => (
+                <li key={id}>
+                  <Question
+                    id={id}
+                    options={false}
+                  />
+                </li>
+              ))
             )
-            : (this.props.questionIds.filter(id => myAnsweredQuestionsIds.includes(id)).map((id) => (
-              <li key={id}>
-                <Question
-                  id={id}
-                  myAnswer={myAnsweredQuestions[id]}
-                  options
-                />
-              </li>
-            ))
+            : (
+              this.state.myAnsweredQuestions.map((id) => (
+                <li key={id}>
+                  <Question
+                    id={id}
+                    myAnswer={myAnswers[id]}
+                    options
+                  />
+                </li>
+              ))
 
             )
           }
@@ -73,7 +82,8 @@ class AllQuestions extends Component {
 function mapStateToProps ({ questions, users, authedUser }) {
   return {
     questionIds: Object.keys(questions),
-    myAnsweredQuestions: users[authedUser].answers
+    myAnswers: users[authedUser].answers,
+    myAnsweredQuestionsIds: Object.keys(users[authedUser].answers)
   }
 }
 

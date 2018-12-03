@@ -8,7 +8,7 @@ class Leaderboard extends Component {
     const usersArray = Object.values(users)
     return (
       <div className='center'>
-        <h3>Leaderboard</h3>
+        <h3>Leader board</h3>
         {usersArray.sort((a, b) => (b.questions.length + Object.keys(b.answers).length) - (a.questions.length + Object.keys(a.answers).length)).map(user => {
           const asked = user.questions.length
           const answered = Object.keys(user.answers).length
