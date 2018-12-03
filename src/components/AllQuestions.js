@@ -44,9 +44,9 @@ class AllQuestions extends Component {
             />
           )
           }
-
         </Tabs>
 
+        {/* conditional rendering of answered or unanswered questions based on current tab */}
         <ul className='questions-list'>
           {this.state.currentTab === 'Unanswered questions'
             ? (

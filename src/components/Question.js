@@ -34,13 +34,16 @@ class Question extends Component {
   }
 
   componentDidMount () {
+    // save answer in state if there is one already
     this.props.myAnswer && this.setState({ answer: this.props.myAnswer })
 
     this.populateResults()
 
+    // set next question, to be used when user click on Next Question Button
     this.props.unansweredquestions && this.setState({ nextQuestion: this.props.unansweredquestions[1] })
   }
 
+  // save question results in state, to be used for display purposes and make update visible when user answers,
   populateResults = () => {
     const totalUsers = Object.keys(this.props.users).length
 
@@ -77,6 +80,7 @@ class Question extends Component {
     return percent.toFixed(2)
   }
 
+  // to navigate to next question and reset question information on state
   next = () => {
     this.props.history.push(`/question/${this.state.nextQuestion}`)
     this.setState({
@@ -87,6 +91,7 @@ class Question extends Component {
       optionTwoPercent: ''
     })
 
+    // set new next question
     this.props.unansweredquestions && this.setState({ nextQuestion: this.props.unansweredquestions[1] })
   }
 
@@ -96,8 +101,6 @@ class Question extends Component {
     const { avatarURL, name } = users[author]
 
     const { answer, optionOneVotes, optionTwoVotes, optionOnePercent, optionTwoPercent, nextQuestion } = this.state
-
-    console.log('question props', this.props)
 
     return (
       <React.Fragment>
@@ -150,7 +153,7 @@ class Question extends Component {
 
                     />
 
-                    {/* --- Meter adapted from https://codepen.io/bmorelli25/pen/OgevxO--- */}
+                    {/* --- Meter adapted from https://codepen.io/bmorelli25/pen/OgevxO --- */}
 
                     {answer &&
                     <div className='meter'>

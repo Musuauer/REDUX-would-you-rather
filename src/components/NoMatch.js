@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { logout } from '../actions/authedUser'
 
-// adapted from https://tylermcginnis.com/react-router-handling-404-pages/
+// Page not found Component, adapted from https://tylermcginnis.com/react-router-handling-404-pages/
 
 class NoMatch extends Component {
   componentDidMount () {

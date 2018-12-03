@@ -16,14 +16,13 @@ class QuestionPage extends Component {
 
     const unansweredquestions = questionIds.filter(id => !answeredQuestionsIds.includes(id))
 
-    console.log('question page props', this.props)
     return (
       <div className='center'>
         <Question
           id={id}
           options
           unansweredquestions={unansweredquestions}
-          loaction={this.props.location}
+          location={this.props.location}
         />
       </div>
     )

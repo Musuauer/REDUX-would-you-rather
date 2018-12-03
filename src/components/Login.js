@@ -31,6 +31,7 @@ class Login extends Component {
     open: false
   }
 
+  // get ID from selected character and load homepage
   handleChange = event => {
     event.preventDefault()
     const id = event.target.value
@@ -56,6 +57,8 @@ class Login extends Component {
           style={titleStyle}>
             Would you rather...
         </h1>
+
+        {/* Form adapted from Material UI */}
         <FormControl
           onSubmit={this.startGame}
           fullWidth

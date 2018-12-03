@@ -25,7 +25,6 @@ class App extends Component {
           {this.props.user === null
             ? <Route path='/' component={Login} />
             : <React.Fragment>
-              
               <Switch>
                 <Route path='/all' exact component={AllQuestions} />
                 <Route path='/question/:id' exact component={QuestionPage} />

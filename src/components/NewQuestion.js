@@ -32,6 +32,7 @@ class NewQuestion extends Component {
     const { optionOneText, optionTwoText } = this.state
     const { dispatch, author } = this.props
 
+    // create question object from users input saved in the state and the authedUser from the redux store
     const question = {optionOneText, optionTwoText, author}
 
     dispatch(handleAddQuestion(question))

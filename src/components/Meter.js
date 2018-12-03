@@ -9,7 +9,9 @@ const Meter = (props) => {
     label
   } = props
 
+  // get width of results rectangle based of votes
   const w = percent ? Math.max(height, width * Math.min(percent, 1)) : 0
+
   return (
     <svg
       width={width}
