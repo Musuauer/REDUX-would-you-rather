@@ -35,14 +35,19 @@ a{
 
 .card{
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   margin: 4rem auto;
   width: 60%;
   padding: 2rem;
   -webkit-box-shadow: 5px 5px 25px -9px rgba(0,0,0,0.64);
-  -moz-box-shadow: 5px 5px 25px -9px rgba(0,0,0,0.64);
   box-shadow: 5px 5px 25px -9px rgba(0,0,0,0.64);
 }
 .avatar{
@@ -79,9 +84,16 @@ a{
   width: 50%;
   margin: 0 auto;
   padding: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 .option{
   margin-bottom: 2rem;
@@ -90,6 +102,15 @@ textarea{
   font-size: 1rem;
   padding-left: 1rem;
   padding-top: 1rem;
+}
+textarea::-webkit-input-placeholder {
+  font-size: 1rem;
+}
+textarea:-ms-input-placeholder {
+  font-size: 1rem;
+}
+textarea::-ms-input-placeholder {
+  font-size: 1rem;
 }
 textarea::placeholder {
   font-size: 1rem;
@@ -102,9 +123,14 @@ textarea::placeholder {
 
 .nav ul{
   padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   text-decoration: none;
 
 }
@@ -142,8 +168,11 @@ textarea::placeholder {
 }
  .card{
   width: 90%;
-  flex-wrap: wrap;
-  justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   padding: 1rem 0 1rem 1rem;
  }
  .card-info{
@@ -194,9 +223,16 @@ textarea{
 }
 .menu-content ul{
   padding: 0 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   text-decoration: none;
 
 }
@@ -219,9 +255,16 @@ textarea{
   padding-bottom: 1rem;
 }
 .username{
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
   display: flex !important;
-  flex-direction: column;
-  align-items: baseline;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
 }
 .name-navi{
   margin-bottom: 1rem;
