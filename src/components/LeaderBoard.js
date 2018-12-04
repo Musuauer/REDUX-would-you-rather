@@ -11,20 +11,24 @@ class Leaderboard extends Component {
         <h3>Leader board</h3>
 
         {/* sort leaders based on total answers and question asked */}
-        {usersArray.sort((a, b) => (b.questions.length + Object.keys(b.answers).length) - (a.questions.length + Object.keys(a.answers).length)).map(user => {
-          const asked = user.questions.length
-          const answered = Object.keys(user.answers).length
-          const totalQuestions = asked + answered
-          return <UserCard
-            key={user.id}
-            name={user.name}
-            avatarURL={user.avatarURL}
-            questionsAsked={asked}
-            questionsAnswered={answered}
-            totalQuestions={totalQuestions}
-          />
-        }
-        )}
+        {usersArray
+          .sort((a, b) =>
+            (b.questions.length + Object.keys(b.answers).length) -
+            (a.questions.length + Object.keys(a.answers).length))
+          .map(user => {
+            const asked = user.questions.length
+            const answered = Object.keys(user.answers).length
+            const totalQuestions = asked + answered
+            return <UserCard
+              key={user.id}
+              name={user.name}
+              avatarURL={user.avatarURL}
+              questionsAsked={asked}
+              questionsAnswered={answered}
+              totalQuestions={totalQuestions}
+            />
+          }
+          )}
       </div>
     )
   }

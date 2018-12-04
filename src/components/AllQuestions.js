@@ -13,16 +13,8 @@ const Tabs = styled.div`
 class AllQuestions extends Component {
   state = {
     tabNames: ['Unanswered questions', 'Answered questions'],
-    currentTab: 'Unanswered questions',
-    myAnsweredQuestions: [],
-    myUnansweredQuestions: []
+    currentTab: 'Unanswered questions'
 
-  }
-
-  componentDidMount = () => {
-    this.setState({ myUnansweredQuestions: this.props.questionIds.filter(id => !this.props.myAnsweredQuestionsIds.includes(id)) })
-
-    this.setState({ myAnsweredQuestions: this.props.questionIds.filter(id => this.props.myAnsweredQuestionsIds.includes(id)) })
   }
 
   setCurrentTab = (tab) => {
@@ -30,7 +22,11 @@ class AllQuestions extends Component {
   }
 
   render () {
-    const { setCurrentTab, state: { currentTab, tabNames }, props: { myAnswers } } = this
+    const { setCurrentTab, state: { currentTab, tabNames }, props: { myAnswers, questionIds, myAnsweredQuestionsIds } } = this
+
+    const myUnansweredQuestions = questionIds.filter(id => !myAnsweredQuestionsIds.includes(id))
+
+    const myAnsweredQuestions = questionIds.filter(id => myAnsweredQuestionsIds.includes(id))
 
     return (
       <div className='center'>
@@ -48,30 +44,18 @@ class AllQuestions extends Component {
 
         {/* conditional rendering of answered or unanswered questions based on current tab */}
         <ul className='questions-list'>
-          {this.state.currentTab === 'Unanswered questions'
-            ? (
-              this.state.myUnansweredQuestions.map((id) => (
-                <li key={id}>
-                  <Question
-                    id={id}
-                    options={false}
-                  />
-                </li>
-              ))
-            )
-            : (
-              this.state.myAnsweredQuestions.map((id) => (
-                <li key={id}>
-                  <Question
-                    id={id}
-                    myAnswer={myAnswers[id]}
-                    options
-                  />
-                </li>
-              ))
-
-            )
-          }
+          {(currentTab === 'Unanswered questions'
+            ? myUnansweredQuestions
+            : myAnsweredQuestions)
+            .map((id) => (
+              <li key={id}>
+                <Question
+                  id={id}
+                  myAnswer={myAnswers[id]}
+                  options={currentTab !== 'Unanswered questions'}
+                />
+              </li>
+            ))}
         </ul>
 
       </div>
@@ -81,7 +65,8 @@ class AllQuestions extends Component {
 
 function mapStateToProps ({ questions, users, authedUser }) {
   return {
-    questionIds: Object.keys(questions),
+    questions,
+    questionIds: Object.keys(questions).sort((a, b) => questions[b].timestamp - questions[a].timestamp),
     myAnswers: users[authedUser].answers,
     myAnsweredQuestionsIds: Object.keys(users[authedUser].answers)
   }
