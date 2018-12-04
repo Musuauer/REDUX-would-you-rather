@@ -11,14 +11,10 @@ import Meter from './Meter'
 import styled from 'styled-components'
 
 const YourAnswer = styled.div`
-position: absolute;
-left: 0;
-transform: translateX(-110%);
-color: darkgoldenrod;
-font-style: italic;
+font-size: .8rem;
+color: rgb(252, 178, 40);
+margin-bottom: .1rem;
 @media (max-width: 820px) {
-  transform: translateX(15%);
-  font-size: .9rem;
 }
 
 `
@@ -203,6 +199,21 @@ class Question extends Component {
                     </div>
                     }
                   </RadioGroup>
+                  {!nextQuestion &&
+                  <div className='go-to-btn'>
+                    <NavLink
+                      to={`/question/${id}`}
+                      className='navlink'
+                    >
+                      <Button
+                        color='primary'
+                        className='solid-button'
+                      >
+                       Go to question
+                      </Button>
+                    </NavLink>
+                  </div>
+                  }
                 </FormControl>
               )
             }
